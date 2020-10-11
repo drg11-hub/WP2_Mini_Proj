@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+</head>
+<body bgcolor='orange'>
+	<script>
+		function validate_rn(){
+			if(document.RF.Roll_Number.value == ""){
+				alert ("Please Provide Your Roll Number!");
+				document.RF.Roll_Number.focus();
+			}
+			if(isNaN(document.RF.Roll_Number.value)){
+				alert ("Roll Number must contain Numeric Values.");
+				document.RF.Roll_Number.focus();
+			}
+		}
+
+		function validate_fname(){
+			if(document.RF.F_name.value == "" || isNaN(document.RF.F_name.value)==false ){
+				alert("Please Provide Your First Name");
+				document.RF.F_name.focus() ;
+			}
+		}
+		
+		function validate_mname() {
+			if(document.RF.M_name.value == "" || isNaN(document.RF.M_name.value)==false){
+				alert("Please Provide Your Middle Name");
+				document.RF.M_name.focus() ;
+			}
+		}
+
+		function validate_lname() {
+			if(document.RF.L_name.value == "" || isNaN(document.RF.L_name.value)==false){
+				alert("Please Provide Your Last Name");
+				document.RF.L_name.focus() ;
+			}
+		}
+
+		function validate_CGPA(){
+			if (document.RF.CGPA.value<0 || document.RF.CGPA.value>10 || document.RF.CGPA.value == ""){
+				alert("Please enter your Correct CGPA!");
+				document.RF.CGPA.focus();
+			}
+		}
+		
+		function validate_email() {
+			var email = document.getElementById('emailaddr');
+			var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if ( document.RF.emailaddr.value == ""  || !document.RF.emailaddr.value.match(filter)) {
+				alert('Please provide a valid Email.');
+				document.RF.emailaddr.focus();
+			}
+		}
+		
+		function validate_DOB(){
+			if (!document.RF.DOB.value.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
+        		alert('Please enter your valid Date Of Birth.');
+				document.RF.DOB.focus();    		
+			}
+			var today = new Date();
+    		if (today <= document.RF.DOB.value) {
+        		alert("Current or future date is not allowed.");
+				document.RF.DOB.focus(); 
+			}
+		}
+		
+		function validate_Mobile(){
+			var m_check = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+			if(!document.RF.Mobile.value.match(m_check)){
+				alert("Please provide Your valid Mobile Number.");
+				document.RF.Mobile.focus();
+			}
+		}
+	</script>
+	<h1><b><i><center>Registration Form</center></b></i></h1>
+	<form name="RF"><fieldset><legend><b><i><center>Enter Your Details</center></b></i></legend><br>
+		Roll Number: <input type="text" name="Roll_Number" placeholder="Roll No." onchange="validate_rn()" required></input>
+		Upload Your Image:
+		<input type="file" name="FileToUpload" id="FileToUpload" >
+		<!-- <input type="submit" value="Upload Image" name="submit" required><br><br> --><br><br>
+		Name: <input type="text" name="F_name" onchange="validate_fname()" placeholder="First Name" required></input>
+		<input type="text" name="M_name" onchange="validate_mname()" placeholder="Middle Name" required></input>
+		<input type="text" name="L_name" onchange="validate_lname()" placeholder="Last Name" required></input><br><br>
+		Branch: <select name="Bname" required>
+			<option value="COMPS">COMPS</option>
+			<option value="IT">IT</option>
+			<option value="MECH">MECH</option>
+			<option value="EXTC">EXTC</option>
+			<option value="ETRX">ETRX</option>
+		</select>
+		Div: <select name="Div" required>
+			<option value="A">A</option>
+			<option value="B">B</option>
+		</select><br><br>
+		Date Of Birth: <input type="date" name="DOB" onchange="validate_DOB()" required></input><br><br>
+		Gender: <input type="radio" name="radiobutton" value="Male" required>Male</input>
+		<input type="radio" name="radiobutton" value="Female" required>Female</input>
+		<input type="radio" name="radiobutton" value="Other" required>Other</input><br><br>
+		CGPA: <input type="number" name="CGPA" step="0.01" onchange="validate_CGPA()" required/><br><br>
+		Email: <input type="email" name="emailaddr" onchange="validate_email()" required><br><br>
+		Phone Number: <input type="Number" name="Mobile" onchange="validate_Mobile()" placeholder="Enter Your Mobile Number" required></input><hr>
+		<center><input type="submit" name="Submit" value="Submit"/>
+		<input type="reset" name="Submit2" value="Reset" /></center><hr>
+		</fieldset>
+		</form>
+</body>
+</html>
